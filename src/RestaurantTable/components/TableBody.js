@@ -1,9 +1,6 @@
 import React from 'react'
 
-// name, city, state, phone number, and genres
-
 const TableBody = ({ data }) => {
-  console.log(data)
   if (!data) {
     return null
   }
