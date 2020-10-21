@@ -20,10 +20,11 @@ const RestaurantTable = () => {
   const [selectedGenre, setSelectedGenre] = useState('All')
   // Input field value.
   const [nameInput, setNameInput] = useState('')
-
-  const [openedPage, setOpenedPage] = useState(1)
+  //  Current page number.
+  const [currentPage, setCurrentPage] = useState(1)
 
   const onFilter = (selectedFilter, event) => {
+    setCurrentPage(1)
     // Get the value of the 'selectedFilter' .
     const selectedOption = event.target.value
     // Determine if 'selectedFilter' refers to the states or genres, execute filtering, and setState for
@@ -54,6 +55,7 @@ const RestaurantTable = () => {
 
   const searchName = event => {
     event.preventDefault()
+    setCurrentPage(1)
     const dataAfterAppliedFilters = filterRestaurants(
       selectedState,
       selectedGenre,
@@ -116,9 +118,12 @@ const RestaurantTable = () => {
         <>
           <table>
             <TableHead />
-            <TableBody openedPage={openedPage} filteredData={filteredData} />
+            <TableBody currentPage={currentPage} filteredData={filteredData} />
           </table>
-          <Pagination filteredData={filteredData} />
+          <Pagination
+            filteredData={filteredData}
+            setCurrentPage={setCurrentPage}
+          />
         </>
       )}
     </>

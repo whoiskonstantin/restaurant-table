@@ -1,10 +1,9 @@
 import React from 'react'
 
-const TableBody = ({ filteredData, openedPage }) => {
-  const numberOfRestaurants = filteredData.length
-  const numberOfPages = Math.ceil(numberOfRestaurants / 10)
-
-  console.log(numberOfPages)
+const TableBody = ({ filteredData, currentPage }) => {
+  const pageSize = 10
+  let startIndex = (currentPage - 1) * pageSize
+  let endIndex = startIndex + pageSize
 
   if (!filteredData) {
     return null
@@ -12,7 +11,7 @@ const TableBody = ({ filteredData, openedPage }) => {
 
   return (
     <tbody>
-      {filteredData.map(restaurant => (
+      {filteredData.slice(startIndex, endIndex).map(restaurant => (
         <tr key={restaurant.id}>
           <td>{restaurant.name}</td>
           <td>{restaurant.city}</td>

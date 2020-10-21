@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pagination = ({ filteredData }) => {
+const Pagination = ({ filteredData, setCurrentPage }) => {
   const numberOfRestaurants = filteredData.length
   const numberOfPages = Math.ceil(numberOfRestaurants / 10)
   const pages = []
@@ -11,7 +11,9 @@ const Pagination = ({ filteredData }) => {
   return (
     <ul>
       {pages.map(pageNumber => (
-        <li key={pageNumber}>{pageNumber}</li>
+        <li key={pageNumber} onClick={() => setCurrentPage(pageNumber)}>
+          {pageNumber}
+        </li>
       ))}
     </ul>
   )
