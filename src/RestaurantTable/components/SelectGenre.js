@@ -3,21 +3,31 @@ import genres from '../utils/genres'
 
 const SelectGenre = ({ selectedGenre, onGenreFilter, onFilter }) => {
   return (
-    <form>
-      <select
-        name='genres'
-        value={selectedGenre}
-        // onChange={event => onGenreFilter(event)}
-        onChange={event => onFilter('genreFilter', event)}
-        id='genre-selector'
-      >
-        {genres.map(genre => (
-          <option key={genre} value={genre}>
-            {genre}
-          </option>
-        ))}
-      </select>
-    </form>
+    <div className='col-sm'>
+      <form>
+        <div className='input-group mb-3'>
+          <div className='input-group-prepend'>
+            <span className='input-group-text' id='genre-selector'>
+              Filter Genres
+            </span>
+          </div>
+          <select
+            name='genres'
+            className='form-control'
+            value={selectedGenre}
+            // onChange={event => onGenreFilter(event)}
+            onChange={event => onFilter('genreFilter', event)}
+            id='genre-selector'
+          >
+            {genres.map(genre => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
+      </form>
+    </div>
   )
 }
 

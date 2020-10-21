@@ -1,7 +1,22 @@
-ul {
-  text-align: center;
-}
 li {
-  display: inline-block;
-  margin: 0 1rem;
+  display: block;
+}
+.page-link:hover {
+  cursor: pointer;
+  background-color: #62686e;
+  color: #fff;
+}
+.page-link {
+  color: #495057;
+  background-color: #e9ecef;
+}
+
+.page-item.active .page-link {
+  color: #fff;
+  background-color: #495057;
+  border-color: #495057;
+}
+
+.restaurant-page {
+  margin: 1rem 0;
 }

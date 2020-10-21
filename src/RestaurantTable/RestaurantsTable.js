@@ -102,30 +102,42 @@ const RestaurantTable = () => {
   }, [])
   return (
     <>
-      <SearchField
-        nameInput={nameInput}
-        onNameInput={onNameInput}
-        searchName={searchName}
-      />
-      <SelectState selectedState={selectedState} onFilter={onFilter} />
-      <SelectGenre selectedGenre={selectedGenre} onFilter={onFilter} />
-      {filteredData === null || filteredData.length === 0 ? (
-        <h2>
-          There are no search results. Try changing filter methods or searching
-          different restaurant
-        </h2>
-      ) : (
-        <>
-          <table>
-            <TableHead />
-            <TableBody currentPage={currentPage} filteredData={filteredData} />
-          </table>
-          <Pagination
-            filteredData={filteredData}
-            setCurrentPage={setCurrentPage}
-          />
-        </>
-      )}
+      <div className='restaurant-page'>
+        <SearchField
+          nameInput={nameInput}
+          onNameInput={onNameInput}
+          searchName={searchName}
+        />
+        <div className='container'>
+          <div className='row'>
+            <SelectState selectedState={selectedState} onFilter={onFilter} />
+            <SelectGenre selectedGenre={selectedGenre} onFilter={onFilter} />
+          </div>
+        </div>
+        {filteredData === null || filteredData.length === 0 ? (
+          <h2>
+            There are no search results. Try changing filter methods or
+            searching different restaurant
+          </h2>
+        ) : (
+          <>
+            <div className='container'>
+              <table className='table'>
+                <TableHead />
+                <TableBody
+                  currentPage={currentPage}
+                  filteredData={filteredData}
+                />
+              </table>
+              <Pagination
+                filteredData={filteredData}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   )
 }
