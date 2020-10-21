@@ -1,9 +1,9 @@
 import React from 'react'
 
-const FilterNames = ({ nameInput, onNameInput, searchName }) => {
+const SearchField = ({ nameInput, onNameInput, searchName }) => {
   return (
     <div>
-      <form action=''>
+      <form>
         <input
           type='text'
           value={nameInput}
@@ -15,4 +15,4 @@ const FilterNames = ({ nameInput, onNameInput, searchName }) => {
   )
 }
 
-export default FilterNames
+export default SearchField
