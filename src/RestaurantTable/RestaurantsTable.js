@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import TableBody from './components/TableBody'
-import TableHead from './components/TableHead'
-import apiData from './components/Api'
-import alphabeticalSort from './utils/sort'
+// Components.
 import SearchField from './components/SearchField'
 import SelectState from './components/SelectState'
 import SelectGenre from './components/SelectGenre'
+import Table from './components/Table'
+// Utils.
+import { fetchData } from './utils/api'
 import { performStateFilter as filterRestaurants } from './utils/filters'
-import Pagination from './components/Pagination'
 
 const RestaurantTable = () => {
   // STATE.
   // Source of truth for the table: raw data.
   const [data, setData] = useState(null)
+  // API error message.
+  const [fetchError, setFetchError] = useState(null)
+  // Fetching state
+  const [isFetching, setIsFetching] = useState(true)
   // Displayed data.
   const [filteredData, setFilteredData] = useState(null)
   // Value of selected filters.
@@ -22,6 +25,11 @@ const RestaurantTable = () => {
   const [nameInput, setNameInput] = useState('')
   //  Current page number.
   const [currentPage, setCurrentPage] = useState(1)
+
+  // Initial data fetching.
+  useEffect(() => {
+    fetchData(setData, setFilteredData, setFetchError, setIsFetching)
+  }, [])
 
   const onFilter = (selectedFilter, event) => {
     setCurrentPage(1)
@@ -86,20 +94,6 @@ const RestaurantTable = () => {
     setFilteredData(filteredData)
   }
 
-  useEffect(() => {
-    const filteredData = apiData.map(restaurant => ({
-      id: restaurant.id,
-      name: restaurant.name,
-      city: restaurant.city,
-      state: restaurant.state,
-      telephone: restaurant.telephone,
-      genre: restaurant.genre.split(','),
-    }))
-
-    alphabeticalSort(filteredData)
-    setData(filteredData)
-    setFilteredData(filteredData)
-  }, [])
   return (
     <>
       <div className='restaurant-page'>
@@ -114,28 +108,20 @@ const RestaurantTable = () => {
             <SelectGenre selectedGenre={selectedGenre} onFilter={onFilter} />
           </div>
         </div>
-        {filteredData === null || filteredData.length === 0 ? (
-          <h2>
-            There are no search results. Try changing filter methods or
-            searching different restaurant
-          </h2>
+        {isFetching ? (
+          <div className='loader'></div>
         ) : (
-          <>
-            <div className='container'>
-              <table className='table'>
-                <TableHead />
-                <TableBody
-                  currentPage={currentPage}
-                  filteredData={filteredData}
-                />
-              </table>
-              <Pagination
+          <div className='container'>
+            {fetchError ? (
+              <h2>{fetchError}</h2>
+            ) : (
+              <Table
                 filteredData={filteredData}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               />
-            </div>
-          </>
+            )}
+          </div>
         )}
       </div>
     </>
