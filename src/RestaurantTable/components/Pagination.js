@@ -1,5 +1,23 @@
 import React from 'react'
-import PageButton from './PageButton'
+
+const PageButton = ({ pageNumber, currentPage, setCurrentPage }) => {
+  if (pageNumber === currentPage) {
+    return (
+      <li
+        className='page-item active'
+        onClick={() => setCurrentPage(pageNumber)}
+      >
+        <span className='page-link'>{pageNumber}</span>
+      </li>
+    )
+  }
+
+  return (
+    <li className='page-item' onClick={() => setCurrentPage(pageNumber)}>
+      <span className='page-link'>{pageNumber}</span>
+    </li>
+  )
+}
 
 const Pagination = ({ filteredData, setCurrentPage, currentPage }) => {
   const numberOfRestaurants = filteredData.length
@@ -24,16 +42,5 @@ const Pagination = ({ filteredData, setCurrentPage, currentPage }) => {
     </div>
   )
 }
-// <ul className='pagination pagination-lg'>
-//   {pages.map(pageNumber => (
-//     <li
-//       className='page-item'
-//       key={pageNumber}
-//       onClick={() => setCurrentPage(pageNumber)}
-//     >
-//       {pageNumber}
-//     </li>
-//   ))}
-// </ul>
 
 export default Pagination

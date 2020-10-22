@@ -1,7 +1,7 @@
 import React from 'react'
 import states from '../utils/statesList'
 
-const SelectState = ({ selectedState, onStateFilter, onFilter }) => {
+const SelectState = ({ selectedState, onFilter }) => {
   return (
     <div className='col-sm'>
       <form>
@@ -15,7 +15,6 @@ const SelectState = ({ selectedState, onStateFilter, onFilter }) => {
             name='states'
             className='form-control'
             value={selectedState}
-            // onChange={event => onStateFilter(event)}
             onChange={event => onFilter('stateFilter', event)}
             id='state-selector'
           >

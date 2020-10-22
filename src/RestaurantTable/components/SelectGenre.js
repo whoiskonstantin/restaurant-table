@@ -1,7 +1,7 @@
 import React from 'react'
 import genres from '../utils/genres'
 
-const SelectGenre = ({ selectedGenre, onGenreFilter, onFilter }) => {
+const SelectGenre = ({ selectedGenre, onFilter }) => {
   return (
     <div className='col-sm'>
       <form>
@@ -15,7 +15,6 @@ const SelectGenre = ({ selectedGenre, onGenreFilter, onFilter }) => {
             name='genres'
             className='form-control'
             value={selectedGenre}
-            // onChange={event => onGenreFilter(event)}
             onChange={event => onFilter('genreFilter', event)}
             id='genre-selector'
           >
