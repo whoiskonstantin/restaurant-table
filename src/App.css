@@ -30,6 +30,11 @@ li {
 .visible-row {
   display: table-row;
 }
+
+td:hover {
+  cursor: pointer;
+}
+
 td.no-border {
   border: none;
   border: 0;
