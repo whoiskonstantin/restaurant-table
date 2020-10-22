@@ -21,6 +21,28 @@ li {
   margin: 1rem 0;
 }
 
+.bold-details {
+  font-weight: bolder;
+}
+.details {
+  font-weight: normal;
+}
+.visible-row {
+  display: table-row;
+}
+td.no-border {
+  border: none;
+  border: 0;
+  background: rgba(255, 255, 255, 1);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(247, 247, 247, 1) 100%
+  );
+}
+.invisible-row {
+  display: none;
+}
 .loader {
   margin: 100px auto;
   font-size: 15px;

@@ -22,11 +22,7 @@ export async function fetchData(
     // Handle the response.
     if (response.status >= 200 && response.status < 300) {
       const filteredData = parsedResponse.map(restaurant => ({
-        id: restaurant.id,
-        name: restaurant.name,
-        city: restaurant.city,
-        state: restaurant.state,
-        telephone: restaurant.telephone,
+        ...restaurant,
         genre: restaurant.genre.split(','),
       }))
 
